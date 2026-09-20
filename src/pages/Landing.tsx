@@ -3,6 +3,7 @@ import { ArrowRight, Boxes, Check, Layers3, Printer, Ruler, Truck, Wallet } from
 import { PLANS } from '@/lib/plans'
 import { money } from '@/lib/utils'
 import { Button } from '@/components/ui'
+import { SITE_HOST_PATH, SITE_URL } from '@/lib/site'
 
 const features = [
   { icon: Ruler, title: 'Lançamento de cômodos', text: 'Vão menor, vão maior, enchimento EPS ou lajota, altura H8–H20 e acréscimo de viga.' },
@@ -18,13 +19,13 @@ export default function Landing() {
     <div className="grid-fog relative min-h-screen overflow-hidden">
       <div className="noise absolute inset-0" />
       <header className="relative z-10 mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
-        <div className="flex items-center gap-3">
+        <a href={SITE_URL} className="flex items-center gap-3">
           <div className="grid h-10 w-10 place-items-center rounded-xl bg-gold font-serif text-xl text-ink">N</div>
           <div>
             <div className="text-sm font-extrabold tracking-[0.2em] text-fog">NEVOALAJE</div>
-            <div className="text-[11px] text-mist">Laje pré-moldada, do cômodo à entrega</div>
+            <div className="text-[11px] text-gold">{SITE_HOST_PATH}</div>
           </div>
-        </div>
+        </a>
         <nav className="hidden items-center gap-6 text-sm text-mist md:flex">
           <a href="#produto">Produto</a>
           <a href="#planos">Planos</a>
@@ -125,8 +126,8 @@ export default function Landing() {
                   <li key={f} className="flex gap-2 text-fog"><Check className="mt-0.5 h-4 w-4 text-gold" />{f}</li>
                 ))}
               </ul>
-              <Link to={`/login?plan=${p.id}`} className="mt-6 block">
-                <Button className="w-full" variant={p.highlight ? 'gold' : 'ink'}>Começar {p.name}</Button>
+              <Link to={`/checkout?plan=${p.id}`} className="mt-6 block">
+                <Button className="w-full" variant={p.highlight ? 'gold' : 'ink'}>Assinar {p.name}</Button>
               </Link>
             </div>
           ))}
@@ -134,7 +135,7 @@ export default function Landing() {
       </section>
 
       <footer className="relative z-10 border-t border-white/10 px-6 py-10 text-center text-xs text-mist">
-        NevoaLaje · multi-tenant · GitHub Pages + Supabase · Mercado Pago
+        NevoaLaje · <a href={SITE_URL} className="text-gold">{SITE_HOST_PATH}</a> · Supabase · Mercado Pago
       </footer>
     </div>
   )

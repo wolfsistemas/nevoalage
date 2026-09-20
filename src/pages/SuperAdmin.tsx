@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { Badge, Button, Card } from '@/components/ui'
 import { store } from '@/lib/store'
 import { useStore } from '@/lib/useStore'
+import { SITE_HOST_PATH, SITE_URL } from '@/lib/site'
 import { PLANS } from '@/lib/plans'
 import { money } from '@/lib/utils'
 import { LogOut, Shield } from 'lucide-react'
@@ -32,7 +33,7 @@ export default function SuperAdmin() {
           <div className="grid h-9 w-9 place-items-center rounded-lg bg-gold text-ink"><Shield className="h-4 w-4" /></div>
           <div>
             <div className="text-xs font-extrabold tracking-[0.25em]">NEVOALAJE · SUPER ADMIN</div>
-            <div className="text-[11px] text-mist">Plataforma multi-tenant</div>
+            <a href={SITE_URL} className="text-[11px] text-gold">{SITE_HOST_PATH}</a>
           </div>
         </div>
         <button onClick={logout} className="flex items-center gap-2 text-sm text-mist hover:text-white">

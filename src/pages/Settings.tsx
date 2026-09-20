@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Button, Card, Field, Input } from '@/components/ui'
 import { store } from '@/lib/store'
 import { useStore } from '@/lib/useStore'
+import { Link } from 'react-router-dom'
 import { PLANS } from '@/lib/plans'
 import { money, uid } from '@/lib/utils'
 import type { Product } from '@/lib/engine/types'
@@ -65,9 +66,9 @@ export default function Settings() {
               <div className="font-serif text-2xl">{p.name}</div>
               <div className="text-gold">{money(p.monthly)}/mês</div>
               <div className="text-xs text-mist">Anual PIX {money(p.yearlyPix)}</div>
-              <Button className="mt-3 w-full" variant="line" onClick={() => alert(`Checkout Mercado Pago (${p.name}) — conecte as credenciais no .env do Supabase.`)}>
-                Assinar {p.name}
-              </Button>
+              <Link to={`/checkout?plan=${p.id}`} className="mt-3 block">
+                <Button className="w-full" variant="line">Assinar {p.name}</Button>
+              </Link>
             </div>
           ))}
         </div>

@@ -13,6 +13,7 @@ import {
 } from 'lucide-react'
 import { store } from '@/lib/store'
 import { useStore } from '@/lib/useStore'
+import { SITE_HOST_PATH, SITE_URL } from '@/lib/site'
 import { cn } from '@/lib/utils'
 
 const items = [
@@ -39,8 +40,8 @@ export default function AppShell() {
         <div className="flex items-center gap-3 px-5 py-6">
           <div className="grid h-9 w-9 place-items-center rounded-lg bg-gold font-serif text-lg text-ink">N</div>
           <div>
-            <div className="text-xs font-extrabold tracking-[0.2em]">NEVOALAJE</div>
-            <div className="text-[11px] text-mist">{s.company.nome}</div>
+            <a href={SITE_URL} className="text-xs font-extrabold tracking-[0.2em]">NEVOALAJE</a>
+            <div className="text-[11px] text-gold">{SITE_HOST_PATH}</div>
           </div>
         </div>
         <nav className="flex-1 space-y-1 px-3">

@@ -13,6 +13,8 @@ import Deliveries from './pages/Deliveries'
 import Clients from './pages/Clients'
 import Settings from './pages/Settings'
 import SuperAdmin from './pages/SuperAdmin'
+import Checkout from './pages/Checkout'
+import CheckoutReturn from './pages/CheckoutReturn'
 import { useStore } from './lib/useStore'
 import { store } from './lib/store'
 
@@ -41,6 +43,8 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/checkout/retorno" element={<CheckoutReturn />} />
         <Route
           path="/super"
           element={

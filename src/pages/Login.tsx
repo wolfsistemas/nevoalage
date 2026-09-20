@@ -2,6 +2,7 @@ import { useState, type FormEvent } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Button, Card, Field, Input } from '@/components/ui'
 import { store } from '@/lib/store'
+import { SITE_HOST_PATH, SITE_URL } from '@/lib/site'
 
 export default function Login() {
   const nav = useNavigate()
@@ -30,7 +31,7 @@ export default function Login() {
         <div className="bg-ink px-8 py-8 text-center">
           <div className="mx-auto mb-3 grid h-14 w-14 place-items-center rounded-2xl bg-gold font-serif text-3xl text-ink">N</div>
           <h1 className="text-xl font-extrabold tracking-[0.25em]">NEVOALAJE</h1>
-          <p className="mt-1 text-sm text-gold">Acesso da fábrica · Supabase</p>
+          <a href={SITE_URL} className="mt-1 block text-sm text-gold">{SITE_HOST_PATH}</a>
         </div>
         <form onSubmit={submit} className="space-y-4 p-8">
           {error && <div className="rounded-xl border border-bad/40 bg-bad/10 p-3 text-center text-sm text-bad">{error}</div>}

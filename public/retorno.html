@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>NevoaLaje · Mercado Pago</title>
+  </head>
+  <body>
+    <script>
+      var q = location.search || ''
+      var base = location.pathname.replace(/retorno\.html$/, '')
+      location.replace(base + '#/checkout/retorno' + q)
+    </script>
+    <p><a href="/nevoalaje/#/checkout/retorno">Continuar</a></p>
+  </body>
+</html>

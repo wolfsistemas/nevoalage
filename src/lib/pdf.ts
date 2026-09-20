@@ -18,7 +18,7 @@ function openPrint(title: string, inner: string) {
       @media print { button{display:none} }
     </style></head><body>
     ${inner}
-    <p class="muted" style="margin-top:18px">Gerado pelo NevoaLaje · ${new Date().toLocaleString('pt-BR')}</p>
+     <p class="muted" style="margin-top:18px">Gerado pelo NevoaLaje · wolfsaas.com.br/nevoalaje · ${new Date().toLocaleString('pt-BR')}</p>
     <button onclick="window.print()">Imprimir / salvar PDF</button>
     </body></html>`)
   w.document.close()

@@ -2,7 +2,9 @@
 
 SaaS para fábricas de laje pré-moldada: lançamento de cômodos, plano de corte de treliça, peças individuais, traço, custos, entrega e PDF.
 
-Stack: React + Vite + TypeScript + Tailwind. Multi-tenant no Supabase. Front no GitHub Pages (HashRouter).
+Site: https://wolfsaas.com.br/nevoalaje
+
+Stack: React + Vite + TypeScript + Tailwind. Multi-tenant no Supabase. Front em wolfsaas.com.br/nevoalaje.
 
 ## Demo local
 
