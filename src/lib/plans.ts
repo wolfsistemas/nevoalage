@@ -1,0 +1,58 @@
+export const PLANS = [
+  {
+    id: 'nevoa' as const,
+    name: 'Névoa',
+    tagline: 'Para quem está começando a digitalizar a fábrica.',
+    monthly: 89,
+    yearly: 890,
+    yearlyPix: 850,
+    orcamentos: 40,
+    usuarios: 2,
+    features: [
+      'Lançamento de cômodos',
+      'Corte FFD / BFD / DP',
+      'PDF de orçamento',
+      '1 fábrica',
+      'WhatsApp do orçamento',
+    ],
+  },
+  {
+    id: 'oficina' as const,
+    name: 'Oficina',
+    tagline: 'O plano da fábrica que produz todo dia.',
+    monthly: 189,
+    yearly: 1890,
+    yearlyPix: 1690,
+    orcamentos: 250,
+    usuarios: 6,
+    highlight: true,
+    features: [
+      'Tudo do Névoa',
+      'Peças individuais + entrega parcial',
+      'Traço e custo real',
+      'MFFD + melhor automático',
+      'Impressão de corte na oficina',
+      'Clientes e tabela de m²',
+    ],
+  },
+  {
+    id: 'fabrica' as const,
+    name: 'Fábrica',
+    tagline: 'Multi-usuário, marca própria e volume.',
+    monthly: 349,
+    yearly: 3490,
+    yearlyPix: 2990,
+    orcamentos: Infinity,
+    usuarios: 20,
+    features: [
+      'Tudo da Oficina',
+      'Orçamentos ilimitados',
+      'Logo e dados no PDF',
+      'Vários operadores',
+      'Relatórios de perda e entrega',
+      'Prioridade no suporte',
+    ],
+  },
+]
+
+export type PlanId = (typeof PLANS)[number]['id']

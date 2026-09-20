@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
+  --color-ink: #0b1220;
+  --color-ink-2: #121a2b;
+  --color-ink-3: #1a2438;
+  --color-fog: #d7e0ea;
+  --color-mist: #9aa8b8;
+  --color-gold: #c9a227;
+  --color-gold-2: #e4c45a;
+  --color-steel: #6b7c90;
+  --color-ok: #3d9a6a;
+  --color-warn: #d97706;
+  --color-bad: #c24141;
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: var(--color-ink);
+  color: var(--color-fog);
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-serif { font-family: var(--font-serif); }
+
+.grid-fog {
+  background-image:
+    radial-gradient(1200px 500px at 10% -10%, rgba(201, 162, 39, 0.12), transparent 50%),
+    radial-gradient(900px 400px at 90% 0%, rgba(125, 160, 190, 0.14), transparent 45%),
+    linear-gradient(180deg, #0b1220 0%, #0e1626 100%);
+}
+
+.noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+  opacity: 0.06;
+  pointer-events: none;
+}
+
+.bar-cut {
+  background: repeating-linear-gradient(
+    90deg,
+    #c9a227 0 2px,
+    transparent 2px 18px
+  );
+}
+
+input, select, textarea {
+  font-family: inherit;
+}
+
+@media print {
+  .no-print { display: none !important; }
+  body { background: #fff; color: #111; }
+}
