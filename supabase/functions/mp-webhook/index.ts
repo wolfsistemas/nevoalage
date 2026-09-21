@@ -82,7 +82,13 @@ async function activate(ref: string, status: string, mpId: string, amount: numbe
 }
 
 Deno.serve(async (req) => {
-  if (req.method === 'GET') return Response.json({ ok: true, service: 'nevoalaje-mp-webhook', site: SITE })
+  if (req.method === 'GET')
+    return Response.json({
+      ok: true,
+      service: 'nevoalaje-mp-webhook',
+      site: SITE,
+      configured: { mp_token: Boolean(TOKEN), webhook_secret: Boolean(SECRET), db: Boolean(SB_URL && SERVICE) },
+    })
   if (req.method !== 'POST') return new Response('method', { status: 405 })
 
   let body: Record<string, unknown> = {}
