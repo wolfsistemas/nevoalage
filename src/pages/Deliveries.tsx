@@ -33,9 +33,13 @@ export default function Deliveries() {
       .map((p) => ({ tamanho: p.tamanho, qtd: Number(qtds[p.tamanho.toFixed(2)] ?? Math.max(p.qtd - (entregue[p.tamanho.toFixed(2)] || 0), 0)) }))
       .filter((v) => v.qtd > 0)
     if (!vigotas.length) return alert('Informe ao menos uma peça.')
-    await store.addDelivery({ quoteId: quote.id, data, vigotas, observacao: obs })
-    setObs('')
-    setQtds({})
+    try {
+      await store.addDelivery({ quoteId: quote.id, data, vigotas, observacao: obs })
+      setObs('')
+      setQtds({})
+    } catch (e) {
+      alert(e instanceof Error ? e.message : 'Erro ao registrar entrega')
+    }
   }
 
   return (

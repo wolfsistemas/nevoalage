@@ -1,8 +1,17 @@
 import { SITE_URL } from './site'
+import { SUPABASE_URL } from './supabase'
 import type { PlanId } from './plans'
 
 export const MP_PUBLIC_KEY = import.meta.env.VITE_MP_PUBLIC_KEY || ''
-export const MP_CHECKOUT_URL = import.meta.env.VITE_MP_CHECKOUT_URL || '/api/mp/checkout'
+
+const isLocal =
+  typeof window !== 'undefined' &&
+  (window.location.hostname === 'localhost' ||
+    window.location.hostname === '127.0.0.1' ||
+    window.location.hostname.endsWith('.monkeycode-ai.live'))
+
+export const MP_CHECKOUT_URL =
+  import.meta.env.VITE_MP_CHECKOUT_URL || (isLocal ? '/api/mp/checkout' : `${SUPABASE_URL}/functions/v1/mp-checkout`)
 
 export type CheckoutKind = 'monthly' | 'pix_yearly'
 

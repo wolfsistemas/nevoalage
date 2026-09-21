@@ -13,10 +13,28 @@ Site: https://wolfsaas.com.br/nevoalaje
 ## Front
 
 - Public Key no Vite: `VITE_MP_PUBLIC_KEY`
-- Checkout: `POST /api/mp/checkout` com `{ plan, kind, email, tenantId }`
+- Checkout: `POST <checkout-url>` com `{ plan, kind, email, tenantId }`
   - `kind: monthly` → assinatura (`/preapproval`)
   - `kind: pix_yearly` → Preference PIX
+- URL de checkout:
+  - local: `/api/mp/checkout` (middleware do Vite, `server/mp.mjs`)
+  - produção: `https://wiczgrhnvvfeefbyyndb.supabase.co/functions/v1/mp-checkout`
+  - override: `VITE_MP_CHECKOUT_URL`
 - Retorno: `https://wolfsaas.com.br/nevoalaje/retorno.html` → `/#/checkout/retorno`
+
+## Edge Functions publicadas (projeto wiczgrhnvvfeefbyyndb)
+
+| Função | URL | verify_jwt |
+|--------|-----|-----------|
+| mp-checkout | `https://wiczgrhnvvfeefbyyndb.supabase.co/functions/v1/mp-checkout` | false |
+| mp-webhook | `https://wiczgrhnvvfeefbyyndb.supabase.co/functions/v1/mp-webhook` | false |
+
+Secrets do projeto: `MP_ACCESS_TOKEN`, `MP_WEBHOOK_SECRET`, `APP_PUBLIC_URL`.
+`SUPABASE_URL` e `SUPABASE_SERVICE_ROLE_KEY` são injetados automaticamente.
+
+O `mp-webhook` valida a assinatura `x-signature` (HMAC SHA-256) e, em pagamento
+aprovado, liga o tenant (`status = ativo`, `plano`, `trial_ends_at` +12 meses no
+PIX) e grava em `payments`.
 
 ## Secrets (somente servidor, nunca no front)
 

@@ -69,7 +69,7 @@ export default function AppShell() {
       <div className="flex min-w-0 flex-1 flex-col">
         <header className="no-print flex items-center justify-between border-b border-white/10 px-4 py-3 md:px-8">
           <div className="text-sm text-mist">
-            {s.session?.nome} · plano <span className="text-gold">Oficina</span>
+            {s.session?.nome} · <span className="text-gold">{s.company.nome}</span>
           </div>
           <div className="flex items-center gap-2 text-xs text-mist">
             <Printer className="h-4 w-4" /> PDFs prontos para a oficina
@@ -78,9 +78,9 @@ export default function AppShell() {
         <main className="flex-1 overflow-auto p-4 md:p-8">
           <Outlet />
         </main>
-        <nav className="no-print grid grid-cols-5 border-t border-white/10 bg-ink-2 md:hidden">
-          {items.slice(0, 5).map((it) => (
-            <NavLink key={it.to} to={it.to} end={it.end} className={({ isActive }) => cn('flex flex-col items-center py-2 text-[10px]', isActive ? 'text-gold' : 'text-mist')}>
+        <nav className="no-print grid grid-cols-4 border-t border-white/10 bg-ink-2 md:hidden">
+          {items.map((it) => (
+            <NavLink key={it.to} to={it.to} end={it.end} className={({ isActive }) => cn('flex flex-col items-center gap-1 py-2 text-[10px]', isActive ? 'text-gold' : 'text-mist')}>
               <it.icon className="h-4 w-4" />
               {it.label}
             </NavLink>

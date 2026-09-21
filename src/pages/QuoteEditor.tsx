@@ -60,8 +60,12 @@ export default function QuoteEditor() {
   async function save() {
     if (!clienteNome.trim()) return alert('Informe o cliente.')
     if (!comodos.length) return alert('Adicione pelo menos 1 cômodo.')
-    const saved = await store.saveQuote({ id: existing?.id, clienteNome, comodos, observacao: obs })
-    nav(`/app/orcamentos/${existing?.id || saved}`)
+    try {
+      const saved = await store.saveQuote({ id: existing?.id, clienteNome, comodos, observacao: obs })
+      nav(`/app/orcamentos/${existing?.id || saved}`)
+    } catch (e) {
+      alert(e instanceof Error ? e.message : 'Erro ao salvar orçamento')
+    }
   }
 
   const area = comodos.reduce((n, c) => n + c.area, 0)

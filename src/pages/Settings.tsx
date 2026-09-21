@@ -23,7 +23,7 @@ export default function Settings() {
           <Field label="Barra treliça (m)"><Input type="number" value={cfg.barraTrelica} onChange={(e) => setCfg({ ...cfg, barraTrelica: Number(e.target.value) })} /></Field>
           <Field label="Lajotas / m²"><Input type="number" value={cfg.lajotasPorM2} onChange={(e) => setCfg({ ...cfg, lajotasPorM2: Number(e.target.value) })} /></Field>
         </div>
-        <Button className="mt-4" onClick={async () => { await store.saveConfig(cfg); alert('Configuração salva.') }}>Salvar medidas</Button>
+        <Button className="mt-4" onClick={async () => { try { await store.saveConfig(cfg); alert('Configuração salva.') } catch (e) { alert(e instanceof Error ? e.message : 'Erro ao salvar') } }}>Salvar medidas</Button>
       </Card>
       <Card className="p-5">
         <h2 className="mb-3 font-bold text-white">Preço de venda m²</h2>
@@ -43,7 +43,7 @@ export default function Settings() {
           <Input placeholder="Descrição" value={prod.descricao} onChange={(e) => setProd({ ...prod, descricao: e.target.value })} />
           <Input placeholder="Un" value={prod.unidade} onChange={(e) => setProd({ ...prod, unidade: e.target.value })} />
           <Input type="number" value={prod.custoUnitario} onChange={(e) => setProd({ ...prod, custoUnitario: Number(e.target.value) })} />
-          <Button onClick={async () => { if (!prod.descricao) return; await store.saveProduct({ ...prod, id: uid('p') }); setProd({ descricao: '', unidade: 'un', custoUnitario: 0, tipo: 'material' }) }}>Incluir</Button>
+          <Button onClick={async () => { if (!prod.descricao) return; try { await store.saveProduct({ ...prod, id: uid('p') }); setProd({ descricao: '', unidade: 'un', custoUnitario: 0, tipo: 'material' }) } catch (e) { alert(e instanceof Error ? e.message : 'Erro ao incluir item') } }}>Incluir</Button>
         </div>
         <table className="w-full text-sm">
           <tbody>

@@ -6,10 +6,18 @@ import { useStore } from '@/lib/useStore'
 export default function Clients() {
   const s = useStore()
   const [form, setForm] = useState({ nome: '', telefone: '', email: '', endereco: '', documento: '' })
+  const [saving, setSaving] = useState(false)
   async function save() {
     if (!form.nome.trim()) return
-    await store.addClient(form)
-    setForm({ nome: '', telefone: '', email: '', endereco: '', documento: '' })
+    setSaving(true)
+    try {
+      await store.addClient(form)
+      setForm({ nome: '', telefone: '', email: '', endereco: '', documento: '' })
+    } catch (e) {
+      alert(e instanceof Error ? e.message : 'Erro ao cadastrar cliente')
+    } finally {
+      setSaving(false)
+    }
   }
   return (
     <div className="space-y-5">
@@ -19,7 +27,7 @@ export default function Clients() {
         <Field label="Telefone"><Input value={form.telefone} onChange={(e) => setForm({ ...form, telefone: e.target.value })} /></Field>
         <Field label="E-mail"><Input value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} /></Field>
         <Field label="Endereço"><Input value={form.endereco} onChange={(e) => setForm({ ...form, endereco: e.target.value })} /></Field>
-        <div className="flex items-end"><Button onClick={save}>Cadastrar</Button></div>
+        <div className="flex items-end"><Button disabled={saving} onClick={save}>{saving ? 'Salvando…' : 'Cadastrar'}</Button></div>
       </Card>
       <Card className="overflow-hidden">
         <table className="w-full text-sm">
